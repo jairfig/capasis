@@ -22,8 +22,8 @@ class Aluno(models.Model):
 
 class Modulo(models.Model):
     nome = models.CharField(max_length=255, null=False, blank=False)
-    descricao = models.CharField(max_length=255, null=False, blank=False)
-    trilha = models.CharField(max_length=3, choice=[('IA', 'Inteligência Artificial'),('IOT', 'Internet das Coisas'),('MA', 'Manufatura Aditiva')] , null=False, blank=False)
+    descricao = models.TextField(max_length=255, null=True, blank=True)
+    trilha = models.CharField(max_length=3, choices=[('IA', 'Inteligência Artificial'),('IOT', 'Internet das Coisas'),('MA', 'Manufatura Aditiva')] , null=False, blank=False)
 
     def __str__(self):
         return self.nome
@@ -39,18 +39,18 @@ class Turma(models.Model):
         return self.nome
 
 
-class Aula(models.Model):
+class AulaAgendada(models.Model):
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     data = models.DateField(null=False, blank=False)
     hora_inicio = models.TimeField(null=True, blank=True)
     hora_fim = models.TimeField(null=True, blank=True)
 
     def __str__(self):
-        return self.turma.modulos.nome + ' - ' + self.turma.nome + ' - ' + self.data.strftime('%d/%m/%Y')
+        return self.turma.modulo.nome + ' - ' + self.data.strftime('%d/%m/%Y')
 
 
 class Presenca(models.Model):
-    aula = models.ForeignKey(Aula, on_delete=models.CASCADE)
+    aula = models.ForeignKey(AulaAgendada, on_delete=models.CASCADE)
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
     presenca = models.BooleanField(null=False, blank=False)
     justificativa = models.CharField(max_length=255, null=True, blank=True)
@@ -62,7 +62,7 @@ class Presenca(models.Model):
 class Avaliacao(models.Model):
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
-    conceito = models.CharField(max_length=3, choice=[('0', 'Insuficiente'), ('1', 'Regular'),
+    conceito = models.CharField(max_length=3, choices=[('0', 'Insuficiente'), ('1', 'Regular'),
                                                     ('2', 'Bom'), ('3', 'Excelente')], null=False, blank=False)
 
     def __str__(self):
