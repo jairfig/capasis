@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def meu_diario(request):
-    return render(request, 'diario/lista_alunos.html')
+    return render(request, 'diario/meu_diario.html')
