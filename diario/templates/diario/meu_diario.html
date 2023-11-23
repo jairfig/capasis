@@ -7,7 +7,9 @@
 
 {% endblock styles%}
 
-{% block heading %} Introdução à Inteligência Artificial {% endblock heading %}
+{% block heading %}
+    {% if turma %} {{ turma.modulo.nome }} {% endif %}
+{% endblock heading %}
 
 {% block body %}
 <!-- Tasks Card Example -->
@@ -19,11 +21,11 @@
             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Andamento</div>
             <div class="row no-gutters align-items-center">
               <div class="col-auto">
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ turma.percentual_decorrido }}</div>
               </div>
               <div class="col">
                 <div class="progress progress-sm mr-2">
-                  <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-info" role="progressbar" style="width: {{ turma.percentual_decorrido}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
@@ -43,7 +45,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Alunos matriculados</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ turma.alunos.count }}</div>
           </div>
           <div class="col-auto">
             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -61,20 +63,43 @@
     <!-- Default Card Example -->
     <div class="card mb-4">
       <div class="card-header">
-        Default Card Example
+        Aulas
       </div>
       <div class="card-body">
-        This card uses Bootstrap's default styling with no utility classes added. Global styles are the only things modifying the look and feel of this default card example.
+        <ul>
+          {% for aula in aulas %}
+              <li><a href="aula/{{ aula.id }}">Data: {{ aula.data }}</a>, Início: {{ aula.hora_inicio }}, Fim: {{ aula.hora_fim }}</li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
+        <h6 class="m-0 font-weight-bold text-primary">{{ aulas.first.data }}</h6>
       </div>
       <div class="card-body">
-        The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
+        <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Matrícula</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Situação</th>
+                  <th scope="col">Justificativa</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for presenca in aulas.first.presenca_set.all %}
+                <tr>
+                  <th scope="row">{{ presenca.aluno.id }}</th>
+                  <td>{{ presenca.aluno.nome }}</td>
+                  <td>{{ presenca.situacao }}</td>
+                  <td>{{ presenca.justificativa }}</td>
+                </tr>
+               {% endfor %}
+              </tbody>
+        </table>
       </div>
     </div>
 

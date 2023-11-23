@@ -3,4 +3,5 @@ from diario.views import meu_diario
 
 urlpatterns = [
     path('', meu_diario, name='meu_diario'),
+    # path('/<id>', meu_diario, name='meu_diario'),
 ]

@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 # Create your models here.
 class Professor(models.Model):
@@ -34,6 +36,13 @@ class Turma(models.Model):
     modulo = models.ForeignKey(Modulo, on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     alunos = models.ManyToManyField(Aluno)
+    data_matriculas = models.DateTimeField(auto_now_add=True, editable=False)
+
+    def percentual_decorrido(self):
+        total = self.aulaagendada_set.count()
+        decorrido = self.aulaagendada_set.filter(data__lte=timezone.now()).count()
+
+        return int((decorrido / total) * 100 if total > 0 else 0)
 
     def __str__(self):
         return self.nome
