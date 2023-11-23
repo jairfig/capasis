@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from autoslug import AutoSlugField
 
 
 # Create your models here.
@@ -11,6 +12,9 @@ class Professor(models.Model):
 
     def __str__(self):
         return self.nome
+
+    class Meta:
+        verbose_name_plural = "Professores"
 
 
 class Aluno(models.Model):
@@ -30,13 +34,24 @@ class Modulo(models.Model):
     def __str__(self):
         return self.nome
 
+    class Meta:
+        verbose_name = "Módulo"
+
 
 class Turma(models.Model):
-    nome = models.CharField(max_length=255, null=False, blank=False)
+    # nome_turma = AutoSlugField(populate_from=('modulo', 'professor'), unique=True)
+    nome_turma = models.CharField('Identificação da Turma', max_length=255, unique=True, blank=True, null=True)
     modulo = models.ForeignKey(Modulo, on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    alunos = models.ManyToManyField(Aluno)
-    data_matriculas = models.DateTimeField(auto_now_add=True, editable=False)
+    alunos = models.ManyToManyField(Aluno, verbose_name="Matriculados")
+    data_matricula = models.DateTimeField(auto_now_add=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        if not self.nome_turma:
+            today = timezone.now()
+            year_month = today.strftime('%Y-%m')
+            self.nome_turma = f"{year_month}-{self.modulo}-{self.professor}"
+        super().save(*args, **kwargs)
 
     def percentual_decorrido(self):
         total = self.aulaagendada_set.count()
@@ -45,7 +60,7 @@ class Turma(models.Model):
         return int((decorrido / total) * 100 if total > 0 else 0)
 
     def __str__(self):
-        return self.nome
+        return self.nome_turma
 
 
 class AulaAgendada(models.Model):
@@ -66,15 +81,8 @@ class AulaAgendada(models.Model):
         for aluno in alunos_turma:
             Presenca.objects.create(aula=self, aluno=aluno)
 
-# @receiver(post_save, sender=AulaAgendada)
-# def criar_presencas(sender, instance, **kwargs):
-#     # Verifique se a aula foi recém-criada para evitar chamadas desnecessárias
-#     if kwargs.get('created', False):
-#         # Obtenha todos os alunos da turma
-#         alunos_turma = instance.turma.alunos.all()
-#         # Crie instâncias de Presenca para cada aluno da turma
-#         for aluno in alunos_turma:
-#             Presenca.objects.create(aula=instance, aluno=aluno)
+    class Meta:
+        verbose_name = "Aula"
 
 
 class Presenca(models.Model):

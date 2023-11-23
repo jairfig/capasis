@@ -1,20 +1,6 @@
 from django.contrib import admin
 from .models import Professor, Aluno, Modulo, Turma, AulaAgendada, Presenca
 
-# Register your models here.
-# class UsuariosInline(admin.TabularInline):
-#     model = User.groups.through
-#     raw_id_fields = ('user',)  # optional, if you have too many users
-#     extra = 1
-#     allow_add = True
-
-
-# class MembroComissao(Group):
-#     class Meta:
-#         proxy = True
-#         verbose_name = U'Membro de Comissão'
-#         verbose_name_plural = U'Membros de Comissão'
-
 class TurmaInline(admin.TabularInline):
     model = Turma
     extra = 1
@@ -50,10 +36,11 @@ class AlunosInline(admin.TabularInline):
 
 
 class TurmaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'professor', 'modulo')
-    search_fields = ('nome', 'professor', 'modulo')
+    list_display = ('nome_turma', 'professor', 'modulo')
+    search_fields = ('nome_turma', 'professor', 'modulo')
+    exclude = ('alunos', )
 
-    inlines = [AulasInline, AlunosInline, ]
+    inlines = [AlunosInline, AulasInline, ]
 
 
 class AulaAdmin(admin.ModelAdmin):
