@@ -1,15 +1,16 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 
-{% block title %}IoT>Diário{% endblock title %}
+{% block title %} IoT - Diário{% endblock title %}
+
+
 
 {% block styles %}
 
+
 {% endblock styles%}
 
-{% block heading %}
-    {% if turma %} {{ turma.modulo.nome }} {% endif %}
-{% endblock heading %}
+{% block heading %} {% if turma %} {{ turma.modulo.nome }} {% endif %} {% endblock heading %}
 
 {% block body %}
 <!-- Tasks Card Example -->
@@ -18,14 +19,14 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Andamento</div>
+            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Aulas</div>
             <div class="row no-gutters align-items-center">
               <div class="col-auto">
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ turma.percentual_decorrido }}</div>
+                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ turma.percentual_decorrido }}%</div>
               </div>
               <div class="col">
                 <div class="progress progress-sm mr-2">
-                  <div class="progress-bar bg-info" role="progressbar" style="width: {{ turma.percentual_decorrido}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-info" role="progressbar" style="width: {{ turma.percentual_decorrido }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
@@ -44,16 +45,16 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Alunos matriculados</div>
+            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Matriculados</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ turma.alunos.count }}</div>
           </div>
           <div class="col-auto">
-            <i class="fas fa-comments fa-2x text-gray-300"></i>
+            <i class="fas fa-users fa-2x text-gray-300"></i>
           </div>
         </div>
       </div>
     </div>
- 
+
 </div>
 
 <div class="row">
@@ -63,17 +64,17 @@
     <!-- Default Card Example -->
     <div class="card mb-4">
       <div class="card-header">
-        Aulas
+        Aulas Programadas
       </div>
-      <div class="card-body">
-        <ul>
-          {% for aula in aulas %}
-              <li><a href="aula/{{ aula.id }}">Data: {{ aula.data }}</a>, Início: {{ aula.hora_inicio }}, Fim: {{ aula.hora_fim }}</li>
-          {% endfor %}
-        </ul>
+          <div class="card-body">
+              Selecione o dia de aula abaixo para editar a presença dos alunos. Selecione o dia de aula abaixo para editar a presença dos alunos. Selecione o dia de aula abaixo para editar a presença dos alunos.
+          <ul class="list-group">
+              {% for aula in aulas %}
+                  <li class="list-group-item {% if aula.id == 1 %}active{% endif %}"><a href="aula/{{ aula.id }}">Aula em {{ aula.data|date:"d/m/Y"  }}</a></li>
+              {% endfor %}
+          </ul>
       </div>
     </div>
-
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
