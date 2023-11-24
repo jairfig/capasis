@@ -93,7 +93,7 @@ class Presenca(models.Model):
     justificativa = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
-        return self.aluno.nome + ' - ' + self.aula.turma.nome + ' - ' + self.aula.data.strftime('%d/%m/%Y')
+        return self.aluno.nome + ' - ' + self.aula.turma.nome_turma + ' - ' + self.aula.data.strftime('%d/%m/%Y')
 
 
 class Avaliacao(models.Model):
