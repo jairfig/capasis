@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalhes da Pessoa</title>
+</head>
+<body>
+    <h2>{{ pessoa.nome }}</h2>
+
+    <h3>Arquivos:</h3>
+    {% if arquivos %}
+        <ul>
+            {% for arquivo in arquivos %}
+                <li>{{ arquivo.arquivo.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum arquivo associado a esta pessoa.</p>
+    {% endif %}
+
+    <!-- Adicione qualquer outra informação sobre a pessoa conforme necessário -->
+
+    <a href="{% url 'upload_arquivos' pessoa_id=pessoa.id %}">Upload de Arquivos</a>
+</body>
+</html>
