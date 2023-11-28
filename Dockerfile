@@ -9,7 +9,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install system dependencies
-RUN apt-get update && apt-get upgrade && apt-get install -y --no-install-recommends gcc wkhtmltopdf locales netcat-openbsd # netcat-traditional
+RUN apt-get update && apt-get install -y --no-install-recommends gcc wkhtmltopdf locales netcat-openbsd
 
 RUN locale-gen pt_BR.UTF-8
 ENV LANG pt_BR.UTF-8
