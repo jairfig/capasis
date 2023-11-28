@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Pessoa</title>
+</head>
+<body>
+
+  <h2>Cadastrar Pessoa</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ pessoa_form.as_p }}
+
+    {{ arquivos_form.management_form }}
+    {{ arquivos_form.non_form_errors }}
+
+    <div id="arquivos-formset">
+      {{ arquivos_form.management_form }}
+      {% for form in arquivos_form.forms %}
+        {{ form.as_table }}
+      {% endfor %}
+    </div>
+    <button type="button" class="btn btn-primary" id="adicionar-arquivo">Adicionar Arquivo</button>
+    <button type="submit">Cadastrar</button>
+  </form>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const adicionarArquivoBtn = document.getElementById('adicionar-arquivo');
+    const formset = document.getElementById('id_arquivo_set-TOTAL_FORMS');
+    const arquivosFormset = document.getElementById('id_arquivo_set-0-arquivo').parentNode;
+
+    adicionarArquivoBtn.addEventListener('click', function() {
+      const formIndex = parseInt(formset.value);
+      const novoCampoArquivo = document.createElement('input');
+      novoCampoArquivo.type = 'file';
+      novoCampoArquivo.name = 'arquivo_set-' + formIndex + '-arquivo';
+      novoCampoArquivo.id = 'id_arquivo_set-' + formIndex + '-arquivo';
+
+      arquivosFormset.appendChild(novoCampoArquivo);
+      formset.value = formIndex + 1;
+    });
+  });
+</script>
+</body>
+</html>

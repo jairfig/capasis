@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Pessoa, Arquivo
-from .forms import ArquivoForm
+from .forms import ArquivoFormSet, PessoaForm, ArquivoForm
+
 
 def upload_arquivos(request, pessoa_id):
     pessoa = Pessoa.objects.get(pk=pessoa_id)
@@ -15,11 +16,34 @@ def upload_arquivos(request, pessoa_id):
     else:
         form = ArquivoForm(initial={'pessoa': pessoa_id})
 
-    return render(request, 'arquivos/upload_arquivos.html', {'form': form, 'pessoa': pessoa})
+    return render(request, 'arquivos/adicionar.html', {'form': form, 'pessoa': pessoa})
 
 
 def detalhes_pessoa(request, pessoa_id):
     pessoa = Pessoa.objects.get(pk=pessoa_id)
     arquivos = pessoa.arquivo_set.all()  # Obtém todos os arquivos associados a essa pessoa
 
-    return render(request, 'arquivos/detalhes_pessoa.html', {'pessoa': pessoa, 'arquivos': arquivos})
+    return render(request, 'arquivos/detalhes.html', {'pessoa': pessoa, 'arquivos': arquivos})
+
+
+def lista_pessoas(request):
+    pessoas = Pessoa.objects.all()
+    return render(request, 'arquivos/lista.html', {'pessoas': pessoas})
+
+
+def cadastra_pessoa(request):
+
+
+    if request.method == 'POST':
+        pessoa_form = PessoaForm(request.POST)
+        formset = ArquivoFormSet(request.POST, request.FILES, instance=Pessoa())
+        if formset.is_valid() and pessoa_form.is_valid():
+            pessoa = pessoa_form.save()
+            formset.instance = pessoa
+            formset.save()
+            return render(request, 'arquivos/detalhes.html', {'pessoa': pessoa, 'arquivos': pessoa.arquivo_set.all()})
+    else:
+        pessoa_form = PessoaForm()
+        formset = ArquivoFormSet(instance=Pessoa())
+
+    return render(request, 'arquivos/cadastrar.html', {'arquivos_form': formset, 'pessoa_form': pessoa_form})
