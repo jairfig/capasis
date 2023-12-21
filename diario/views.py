@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def meu_diario(request):
-    user = User.objects.get(id=3)
+    user = User.objects.get(id=2)
     professor = Professor.objects.filter(usuario=user).first()
     turma = professor.turma_set.last()
     context = {
