@@ -84,32 +84,33 @@
       </div>
     </div>
   </div>
+  <button type="submit" class="btn btn-primary mb-3">Adicionar Atividade</button>
 
   <div class="row col-lg-12">
     <!-- Default Card Example -->
     <div class="card mb-4 col-md-12 col-xl-6">
       <div class="card-header">Atividades</div>
       <div class="card-body">
-        Selecione o dia do inicio da ativide abaixo para editar se as atividades dos alunos foi entregue.
+        <p>Selecione a atividade abaixo para editar se as atividades dos alunos foi entregue.</p>
         <ul class="list-group list-group-horizontal-lg flex-wrap">
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="aula/{{ aula.id }}">Aula em {{ '03/01/2024' }}</a>
+                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="aula/{{ aula.id }}">Aula em {{ '04/01/2024' }}</a>
+                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="aula/{{ aula.id }}">Aula em {{ '05/01/2024' }}</a>
+                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="aula/{{ aula.id }}">Aula em {{ '07/01/2024' }}</a>
+                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="aula/{{ aula.id }}">Aula em {{ '08/01/2024' }}</a>
+                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
             </li>
 
         </ul>
@@ -118,7 +119,7 @@
     <!-- Basic Card Example -->
     <div class="card shadow mb-4 col-md-12 col-xl-6">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">{{ '03 de Janeiro de 2024 ate 05 de Janeiro de 2024' }}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">{{ 'Atividade: Nome <br> 03 de Janeiro de 2024 ate 05 de Janeiro de 2024' }}</h6>
       </div>
       <div class="card-body">
         <form action="#" method="post">
@@ -127,7 +128,7 @@
             <thead>
               <tr>
                 <th scope="col">Matrícula</th>
-                <th scope="col">Nome</th>
+                <th scope="col">Nome do aluno</th>             
                 <th scope="col">Atividade</th>
               </tr>
             </thead>
