@@ -118,8 +118,11 @@
           <!-- Adicionando a classe flex-wrap para permitir que os elementos quebrem linha -->
           {% for aula in aulas %}
             <li class="list-group-item col-lg-4 col-md-6 {% if aula.id == 1 %}{% endif %}">
-              <!-- Alterando largura das colunas para se ajustarem em telas menores -->
-              <a href="aula/{{ aula.id }}">Aula em {{ aula.data|date:'d/m/Y' }}</a>
+                <form method="post" action="{% url 'meu_diario' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="aula_id" value="{{ aula.id }}">
+                  <button type="submit">Aula em {{ aula.data|date:'d/m/Y' }}</button>
+                </form>
             </li>
           {% endfor %}
         </ul>
@@ -128,7 +131,7 @@
     <!-- Basic Card Example -->
     <div class="card shadow mb-4 col-md-12 col-xl-6">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">{{ aulas.first.data }}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">{{ chamada.data }}</h6>
       </div>
       <div class="card-body">
         <form action="#" method="post">
@@ -144,7 +147,7 @@
               </tr>
             </thead>
             <tbody>
-              {% for presenca in aulas.first.presenca_set.all %}
+              {% for presenca in chamada.presenca_set.all %}
                 <tr>
                   <th scope="row">{{ presenca.aluno.id }}</th>
                   <td>{{ presenca.aluno.nome }}</td>
