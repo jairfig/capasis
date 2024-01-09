@@ -1,0 +1,54 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}
+    IoT - Diário
+{% endblock %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block heading %}
+    {% if turma %}
+        {{ turma.modulo.nome }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+    <!-- Basic Card Example -->
+    <div class="card shadow mb-4 col-md-12 col-xl-6">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">{{ aula.data }}</h6>
+        </div>
+        <div class="card-body">
+            <h2>Lançar Presenças para {{ aula.turma.nome_turma }}</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Presença</th>
+                        <th>Justificativa</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for form in formset %}
+                        <tr>
+                            <td>{{ form.aluno }}</td>
+                            <td>{{ form.presente }}</td>
+                            <td>{{ form.justificativa }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <input type="submit" value="Salvar Presenças">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+

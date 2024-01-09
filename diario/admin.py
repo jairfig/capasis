@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Professor, Aluno, Modulo, Turma, AulaAgendada, Presenca
+from .models import Professor, Aluno, Modulo, Turma, Aula, Presenca
 
 class TurmaInline(admin.TabularInline):
     model = Turma
@@ -25,7 +25,7 @@ class ModuloAdmin(admin.ModelAdmin):
 
 
 class AulasInline(admin.TabularInline):
-    model = AulaAgendada
+    model = Aula
     extra = 1
     allow_add = True
 
@@ -49,13 +49,13 @@ class AulaAdmin(admin.ModelAdmin):
 
 
 class PresencaAdmin(admin.ModelAdmin):
-    list_display = ('aula', 'aluno', 'situacao', 'justificativa')
-    search_fields = ('aula', 'aluno', 'situacao', 'justificativa')
+    list_display = ('aula', 'aluno', 'presente', 'justificativa')
+    search_fields = ('aula', 'aluno', 'presente', 'justificativa')
 
 
 admin.site.register(Professor, ProfessorAdmin)
 admin.site.register(Aluno, AlunoAdmin)
 admin.site.register(Modulo, ModuloAdmin)
 admin.site.register(Turma, TurmaAdmin)
-admin.site.register(AulaAgendada, AulaAdmin)
+admin.site.register(Aula, AulaAdmin)
 admin.site.register(Presenca, PresencaAdmin)

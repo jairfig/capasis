@@ -54,8 +54,8 @@ class Turma(models.Model):
         super().save(*args, **kwargs)
 
     def percentual_decorrido(self):
-        total = self.aulaagendada_set.count()
-        decorrido = self.aulaagendada_set.filter(data__lte=timezone.now()).count()
+        total = self.aula_set.count()
+        decorrido = self.aula_set.filter(data__lte=timezone.now()).count()
 
         return int((decorrido / total) * 100 if total > 0 else 0)
 
@@ -63,7 +63,7 @@ class Turma(models.Model):
         return self.nome_turma
 
 
-class AulaAgendada(models.Model):
+class Aula(models.Model):
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
     data = models.DateField(null=False, blank=False)
     hora_inicio = models.TimeField(null=True, blank=True)
@@ -86,10 +86,9 @@ class AulaAgendada(models.Model):
 
 
 class Presenca(models.Model):
-    aula = models.ForeignKey(AulaAgendada, on_delete=models.CASCADE)
+    aula = models.ForeignKey(Aula, on_delete=models.CASCADE)
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
-    situacao = models.CharField(max_length=1, choices=[('P', 'Presente'), ('F', 'Faltou'),
-                                                       ('J', 'Justificada')], null=True, blank=True)
+    presente = models.BooleanField(default=False, null=True, blank=False)
     justificativa = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):

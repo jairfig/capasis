@@ -1,7 +1,8 @@
 from django.urls import path, include
-from diario.views import meu_diario
+from diario import views
 
 urlpatterns = [
-    path('', meu_diario, name='meu_diario'),
+    path('', views.meu_diario, name='meu_diario'),
+    path('presenca/<int:id_aula>', views.presenca, name='presenca'),
     # path('/<id>', meu_diario, name='meu_diario'),
 ]

@@ -117,8 +117,12 @@
         Selecione o dia de aula abaixo para editar a presença dos alunos. Selecione o dia de aula abaixo para editar a presença dos alunos. Selecione o dia de aula abaixo para editar a presença dos alunos.<ul class="list-group list-group-horizontal-lg flex-wrap">
           <!-- Adicionando a classe flex-wrap para permitir que os elementos quebrem linha -->
           {% for aula in aulas %}
-            <li class="list-group-item col-lg-4 col-md-6">
-                <a href="{% url 'presenca' aula.id %}">Aula em {{ aula.data|date:'d/m/Y' }}</a>
+            <li class="list-group-item col-lg-4 col-md-6 {% if aula.id == 1 %}{% endif %}">
+                <form method="post" action="{% url 'meu_diario' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="aula_id" value="{{ aula.id }}">
+                  <button type="submit">Aula em {{ aula.data|date:'d/m/Y' }}</button>
+                </form>
             </li>
           {% endfor %}
         </ul>
@@ -130,32 +134,43 @@
         <h6 class="m-0 font-weight-bold text-primary">{{ chamada.data }}</h6>
       </div>
       <div class="card-body">
-{#        <form action="#" method="post">#}
-{#          {% csrf_token %}#}
-{#          <table class="table table-hover">#}
-{#            <thead>#}
-{#              <tr>#}
-{#                <th scope="col">Matrícula</th>#}
-{#                <th scope="col">Nome</th>#}
-{#                <th scope="col">Situação</th>#}
-{#                <th scope="col">Justificativa</th>#}
-{#                <th scope="col">Presença</th>#}
-{#              </tr>#}
-{#            </thead>#}
-{#            <tbody>#}
-{#              {% for presenca in chamada.presenca_set.all %}#}
-{#                <tr>#}
-{#                  <th scope="row">{{ presenca.aluno.id }}</th>#}
-{#                  <td>{{ presenca.aluno.nome }}</td>#}
-{#                  <td>{{ presenca.situacao }}</td>#}
-{#                  <td>{{ presenca.justificativa }}</td>#}
-{#                  <td><input type="checkbox" value="presente"></td>#}
-{#                </tr>#}
-{#              {% endfor %}#}
-{#            </tbody>#}
-{#          </table>#}
-{#          <button type="submit" class="btn btn-success">Salvar</button>#}
-{#        </form>#}
+        <form action="#" method="post">
+          {% csrf_token %}
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Matrícula</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Situação</th>
+                <th scope="col">Justificativa</th>
+                <th scope="col">Presença</th>
+              </tr>
+            </thead>
+            <tbody>
+            <form method="post" action="{% url 'meu_diario' %}">
+              {% csrf_token %}
+                <input type="hidden" name="aula_id" value="{{ aula.id }}">
+              {{ formset.management_form }}
+              {% for form in formset.forms %}
+                {{ form.as_p }}
+              {% endfor %}
+              <input type="submit" value="Salvar Presenças">
+            </form>
+
+
+              {% for presenca in chamada.presenca_set.all %}
+                <tr>
+                  <th scope="row">{{ presenca.aluno.id }}</th>
+                  <td>{{ presenca.aluno.nome }}</td>
+                  <td>{{ presenca.presenca }}</td>
+                  <td>{{ presenca.justificativa }}</td>
+                  <td><input type="checkbox" value="presente"></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
       </div>
     </div>
   </div>
