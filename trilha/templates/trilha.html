@@ -1,0 +1,72 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}
+  IoT - Trilha
+{% endblock %}
+
+{% block styles %}
+<style>
+    .card {
+        transition: transform 0.3s ease; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+
+    .card:hover {
+        transform: scale(1.1);
+        color: #333;
+        text-decoration: none;
+    }
+
+    .card:hover .card-body {
+        background-color: #f5f5f5;
+    }
+
+    .card-body {
+        padding: 20px;
+        text-align: center;
+    }
+
+    h5 {
+        margin-bottom: 0;
+        color: #333;
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+
+{% block heading %}
+  {% comment %} {% if turma %} {% endcomment %}
+    {{ "Trilhas" }}
+  {% comment %} {% endif %} {% endcomment %}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="card-group">
+    <a href="" class="card m-2">
+      <img src="../static/img/img(AI).png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Inteligência Artificial</h5>
+      </div>
+    </a>
+
+    <a href="" class="card m-2">
+      <img src="../static/img/img(IOT).png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Internet das Coisas</h5>
+      </div>
+    </a>
+
+    <a href="" class="card m-2">
+      <img src="../static/img/img(MA).png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Manufatura Aditiva</h5>
+      </div>
+    </a>
+
+  </div>
+</div>
+{% endblock %}

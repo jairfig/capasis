@@ -1,6 +1,6 @@
 from django.urls import path, include
-from atividade.views import atividade
+from atividade import views
 
 urlpatterns = [
-    path('', atividade, name='atividade'),
+    path('', views.atividade, name='atividade'),
 ]
