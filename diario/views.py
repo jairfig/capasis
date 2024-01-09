@@ -66,13 +66,14 @@ def lancar_presencas(request, aula_agendada_id):
 def presenca(request, id_aula):
     aula = get_object_or_404(Aula, pk=id_aula)
     presencas = Presenca.objects.filter(aula=aula)
-    alunos = Aluno.objects.filter(turma=aula.turma)
 
     if request.method == 'POST':
         formset = PresencaFormSet(request.POST, queryset=presencas)
         if formset.is_valid():
             formset.save()
             return redirect('meu_diario')
+        else:
+            print(formset.errors)
     else:
         formset = PresencaFormSet(queryset=presencas)
 

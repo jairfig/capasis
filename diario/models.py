@@ -88,7 +88,7 @@ class Aula(models.Model):
 class Presenca(models.Model):
     aula = models.ForeignKey(Aula, on_delete=models.CASCADE)
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
-    presente = models.BooleanField(default=False, null=True, blank=False)
+    presente = models.BooleanField(default=False, null=True, blank=True)
     justificativa = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
