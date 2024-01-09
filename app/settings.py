@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'dashboard',
     'diario',
     'arquivos',
+    'login',
+    'atividade',
+    'trilha',
 ]
 
 MIDDLEWARE = [
