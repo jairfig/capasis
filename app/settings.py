@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'login',
     'atividade',
     'trilha',
+    'modulo',
 ]
 
 MIDDLEWARE = [
