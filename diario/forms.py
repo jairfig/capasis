@@ -12,7 +12,10 @@ class PresencaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['aluno'].disabled = True
+        aluno_nome = self.instance.aluno.nome if self.instance and self.instance.aluno else ''
+        self.fields['presente'].label = f"{aluno_nome}:"
+        self.fields['aluno'].widget = forms.HiddenInput()
+
 
 
 PresencaFormSet = modelformset_factory(Presenca, form=PresencaForm, extra=0)

@@ -37,8 +37,8 @@
                     </thead>
                     <tbody>
                     {% for form in formset %}
-                        <tr>{{ form.id }}
-                            <td>{{ form.aluno }}</td>
+                        <tr>{{ form.id }} {{ form.aluno }}
+                            <td> {{ form.presente.label_tag }}   </td>
                             <td>{{ form.presente }}</td>
                             <td>{{ form.justificativa }}</td>
                         </tr>
