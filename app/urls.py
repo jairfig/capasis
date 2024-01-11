@@ -26,8 +26,13 @@ urlpatterns = [
     path('diario/', include('diario.urls')),
     path('', include('dashboard.urls')),
     path('pessoa/', include('arquivos.urls')),
-    path('trilha/', include('trilha.urls')),
-    path('modulo/', include('modulo.urls'))
+    path('trilha/', include([
+        path('', include('trilha.urls')),
+            path('modulo/', include([
+                path('', include('modulo.urls')),
+                    path('curso/', include('curso.urls')),
+        ])),
+    ])),
 ]
 
 if settings.DEBUG:

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'atividade',
     'trilha',
     'modulo',
+    'curso',
 ]
 
 MIDDLEWARE = [
