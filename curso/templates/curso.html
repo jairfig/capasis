@@ -24,11 +24,11 @@
             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Grau de Conclusão Do Modulo</div>
             <div class="row no-gutters align-items-center">
               <div class="col-auto">
-                <div class="h5 mb-0 mr-3 font-weight-bold text-black-800">{{ 40 }}%</div>
+                <div class="h5 mb-0 mr-3 font-weight-bold text-black-800">{{ 100 }}%</div>
               </div>
               <div class="col">
                 <div class="progress progress-sm mr-2">
-                  <div class="progress-bar bg-primary" role="progressbar" style="width: {{ 40 }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: {{ 100 }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
@@ -47,7 +47,7 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Quantidade de Alunos Matriculados</div>
+            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Alunos Matriculados</div>
             <div class="h5 mb-0 font-weight-bold text-black-800">{{ 23 }}</div>
           </div>
           <div class="col-auto">
@@ -64,7 +64,7 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Quantidade de Alunos Desistente</div>
+            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Alunos Desistente</div>
             <div class="h5 mb-0 font-weight-bold text-black-800">{{ 3 }}</div>
           </div>
           <div class="col-auto">
@@ -160,6 +160,49 @@
   </div>
 
   <div class="row col-lg-12">
-
+    <button type="submit" class="btn btn-primary mb-3">Criar Relatorio</button>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Porcentagem de presença</th>
+          <th scope="col">Porcentagem de Atividades concluídas</th>
+          <th scope="col">situacão</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Aluno 1</td>
+          <td>100%</td>
+          <td>100%</td>
+          <td>Concluído</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Aluno 2</td>
+          <td>50%</td>
+          <td>35%</td>
+          <td>Desistente</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Aluno 3</td>
+          <td>27%</td>
+          <td>86%</td>
+          <td>Reprovado por Falta</td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Aluno 4</td>
+          <td>100%</td>
+          <td>88%</td>
+          <td>Concluído</td>
+        </tr>
+        
+      </tbody>
+      
+    </table>
   </div>
 {% endblock %}
