@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'trilha',
     'modulo',
     'curso',
+    'professor'
 ]
 
 MIDDLEWARE = [
