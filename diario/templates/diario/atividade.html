@@ -84,91 +84,43 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary mb-3">Adicionar Atividade</button>
+
+  <div class="col-md-12 mb-4 card-body">
+    <a href="{% url 'atividadeAdd' %}">
+      <button type="submit" class="btn btn-success col-2 mt-2 py-3">Adicionar Atividade</button>
+    </a>
+  </div>
 
   <div class="row col-lg-12">
     <!-- Default Card Example -->
-    <div class="card mb-4 col-md-12 col-xl-6">
+    <div class="card mb-4 col-md-12">
       <div class="card-header">Atividades</div>
       <div class="card-body">
         <p>Selecione a atividade abaixo para editar se as atividades dos alunos foi entregue.</p>
         <ul class="list-group list-group-horizontal-lg flex-wrap">
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
         </ul>
       </div>
     </div>
-    <!-- Basic Card Example -->
-    <div class="card shadow mb-4 col-md-12 col-xl-6">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">{{ 'Atividade: Nome <br> 03 de Janeiro de 2024 ate 05 de Janeiro de 2024' }}</h6>
-      </div>
-      <div class="card-body">
-        <form action="#" method="post">
-          {% csrf_token %}
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Matrícula</th>
-                <th scope="col">Nome do aluno</th>             
-                <th scope="col">Atividade</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Aluno1</td>
-                  <td><input type="checkbox" value="presente"></td>
-                </tr>
-              
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Aluno2</td>
-                  <td><input type="checkbox" value="presente"></td>
-                </tr>
-              
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Aluno3</td>
-                  <td><input type="checkbox" value="presente"></td>
-                </tr>
-              
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Aluno4</td>
-                  <td><input type="checkbox" value="presente"></td>
-                </tr>
-              
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Aluno5</td>
-                  <td><input type="checkbox" value="presente"></td>
-                </tr>
-              
-            </tbody>
-          </table>
-          <button type="submit" class="btn btn-success">Salvar</button>
-        </form>
-      </div>
-    </div>
+
   </div>
 {% endblock %}

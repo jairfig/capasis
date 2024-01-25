@@ -1,0 +1,152 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}
+  IoT - Modulos
+{% endblock %}
+
+{% block styles %}
+  <style>
+    .card {
+      transition: transform 0.3s;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .cart:hover {
+      transform: scale(1.1);
+      color: #333;
+    }
+    
+    .cart:hover .cart {
+      background-color: #f5f5f5;
+
+    }
+    
+    .cartao {
+      padding: 20px;
+      text-align: center;
+    }
+    
+    h5 {
+      margin-bottom: 0;
+      color: #333;
+    }
+
+  </style>
+{% endblock %}
+
+{% block heading %}
+  {% comment %} {% if turma %}
+    {% endcomment %}
+    {{ 'Cursos' }}
+    {% comment %}
+  {% endif %} {% endcomment %}
+{% endblock %}
+
+{% block body %}
+  <div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card mb-5 cart">
+          <a href="{% url 'meu_diario' %}">
+            <img src="{% static 'img/provisorio.png' %}" class="card-img-top" alt="..." />
+            <div class="card-body cartao">
+              <h5 class="card-title">Introdução a IoT</h5>
+              <p>Nome da Trilha</p>
+
+              <hr>
+              
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase">Conclusão Do Modulo</div>
+                    <div class="row no-gutters align-items-center">
+                      <div class="col-auto">
+                        <div class="h4 mb-0 mr-3 font-weight-bold text-black-800">{{ 100 }}%</div>
+                      </div>
+                      <div class="col">
+                        <div class="progress progress-sm mr-2">
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card mb-5 cart">
+          <a href="{% url 'meu_diario' %}">
+            <img src="{% static 'img/provisorio.png' %}" class="card-img-top" alt="..." />
+            <div class="card-body cartao">
+              <h5 class="card-title">Aplicações IoT</h5>
+              <p>Nome da Trilha</p>
+
+              <hr>
+
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase">Conclusão Do Modulo</div>
+                    <div class="row no-gutters align-items-center">
+                      <div class="col-auto">
+                        <div class="h4 mb-0 mr-3 font-weight-bold text-black-800">{{ 67 }}%</div>
+                      </div>
+                      <div class="col">
+                        <div class="progress progress-sm mr-2">
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: 67%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card mb-5 cart">
+          <a href="{% url 'meu_diario' %}">
+            <img src="{% static 'img/provisorio.png' %}" class="card-img-top" alt="..." />
+            <div class="card-body cartao">
+              <h5 class="card-title">Internet das Coisas para Automação</h5>
+              <p>Nome da Trilha</p>
+
+              <hr>
+
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase">Conclusão Do Modulo</div>
+                    <div class="row no-gutters align-items-center">
+                      <div class="col-auto">
+                        <div class="h4 mb-0 mr-3 font-weight-bold text-black-800">{{ 0 }}%</div>
+                      </div>
+                      <div class="col">
+                        <div class="progress progress-sm mr-2">
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
