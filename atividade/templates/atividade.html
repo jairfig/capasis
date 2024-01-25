@@ -84,7 +84,12 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary mb-3">Adicionar Atividade</button>
+
+  <div class="col-md-12 mb-4 card-body">
+    <a href="{% url 'atividadeAdd' %}">
+      <button type="submit" class="btn btn-success col-2 mt-2 py-3">Adicionar Atividade</button>
+    </a>
+  </div>
 
   <div class="row col-lg-12">
     <!-- Default Card Example -->
@@ -94,23 +99,23 @@
         <p>Selecione a atividade abaixo para editar se as atividades dos alunos foi entregue.</p>
         <ul class="list-group list-group-horizontal-lg flex-wrap">
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
             <li class="list-group-item col-lg-4 col-md-6">
-                <a href="atividade/{{ atividade.id }}">Atividade: nome</a>
+                <a href="{% url 'atividadeForm' %}">Atividade: nome</a>
             </li>
 
         </ul>

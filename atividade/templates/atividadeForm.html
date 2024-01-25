@@ -1,0 +1,116 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}
+    IoT - Diário
+{% endblock %}
+
+{% block styles %}
+
+<style>
+    .custom-checkbox {
+        transform: scale(2);
+    }
+</style>
+
+{% endblock %}
+
+{% block heading %}
+    {% if turma %}
+        {{ turma.modulo.nome }}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+    <!-- Basic Card Example -->
+    <div class="card shadow mb-4 col-md-12 col-xl-6">
+        <div class="card-header py-3">
+            <!--data limite é opcional-->
+            <h6 class="m-0 font-weight-bold text-primary">{{ 'Data de inicio - Data limite' }}</h6>
+        </div>
+        <div class="card-body">
+            <h2>Atividade do Curso: {{ '"nome da turma"' }}</h2>
+            <hr>
+            <h3>{{ 'Nome: "nome da Atividade"' }}</h2>
+            <p> <b style="color: red;">Descrição da Atividade:</b> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus atque perspiciatis, eaque architecto non maiores dolore quos cumque nobis reiciendis modi illo necessitatibus saepe? Officiis facilis veniam molestiae non tenetur!
+            </p>
+            <form>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Atividade Feita</th>
+                        <th>Descrição</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <fieldset disabled>
+                                    <div class="form-group">
+                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="aluno" value="aluno">
+                                    </div>
+                                </fieldset>
+                            </td>
+
+                            <td>
+                                <div class="form-check text-center align-middle">
+                                    <input class="form-check-input custom-checkbox" type="checkbox" id="largeCheckbox" value="">
+                                </div>
+                            </td>
+
+                            <td>
+                                <textarea class="form-control" id="descricao" rows="4"></textarea>
+                            </td>                            
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <fieldset disabled>
+                                    <div class="form-group">
+                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="aluno" value="aluno">
+                                    </div>
+                                </fieldset>
+                            </td>
+
+                            <td>
+                                <div class="form-check text-center align-middle">
+                                    <input class="form-check-input custom-checkbox" type="checkbox" id="largeCheckbox" value="">
+                                </div>
+                            </td>
+
+                            <td>
+                                <textarea class="form-control" id="descricao" rows="4"></textarea>
+                            </td>                            
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <fieldset disabled>
+                                    <div class="form-group">
+                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="aluno" value="aluno">
+                                    </div>
+                                </fieldset>
+                            </td>
+
+                            <td>
+                                <div class="form-check text-center align-middle">
+                                    <input class="form-check-input custom-checkbox" type="checkbox" id="largeCheckbox" value="">
+                                </div>
+                            </td>
+
+                            <td>
+                                <textarea class="form-control" id="descricao" rows="4"></textarea>
+                            </td>                            
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" class="btn btn-primary" value="Salvar">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
