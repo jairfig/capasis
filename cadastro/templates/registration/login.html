@@ -75,26 +75,34 @@
 
         {#              {% extends 'base.html' %}#}
 
-        <form method="post" action="{% url 'autentica' %}">
+        <form id="login_form" method="post" action="">
             {% csrf_token %}
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" aria-describedby="emailHelp"
-                       placeholder="E-mail">
+            <div class="form-row">
+                <label for="id_username" class="required">Usuário:</label> <input type="text" name="username"
+                                                                                  autofocus="" autocapitalize="none"
+                                                                                  autocomplete="username"
+                                                                                  maxlength="150" required=""
+                                                                                  id="id_username">
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Senha</label>
-                <input type="password" class="form-control" name="password" placeholder="Senha">
+            <div class="form-row">
+
+                <label for="id_password" class="required">Senha:</label> <input type="password" name="password"
+                                                                                autocomplete="current-password"
+                                                                                required="" id="id_password">
+                <input type="hidden" name="next" value="{% url 'meu_diario' %}">
             </div>
-            <button type="submit" class="btn btn-success">Acessar</button>
+
+            <div class="submit-row">
+                <input type="submit" value="Acessar">
+            </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </form>
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
     </div>
 </div>
 

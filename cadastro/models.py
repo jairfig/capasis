@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 
 
 # Create your models here.
@@ -9,8 +9,6 @@ class Pessoa(models.Model):
     def __str__(self):
         return self.nome
 
-class CustomUser(AbstractUser):
-    email = models.EmailField(unique=True)
 
 class Arquivo(models.Model):
     pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)

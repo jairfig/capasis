@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.utils import timezone
 from diario.models import Professor, Aula, Presenca, Aluno
@@ -7,6 +8,7 @@ from .forms import PresencaForm, PresencaFormSet
 
 
 # Create your views here.
+@login_required
 def meu_diario(request):
     try:
         user = User.objects.get(id=2)
@@ -79,3 +81,5 @@ def presenca(request, id_aula):
 
     return render(request, 'diario/presencas.html', {'aula': aula, 'formset': formset})
 
+def atividades(request):
+    return render(request, 'diario/atividade.html')

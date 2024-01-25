@@ -4,5 +4,5 @@ from diario import views
 urlpatterns = [
     path('', views.meu_diario, name='meu_diario'),
     path('presenca/<int:id_aula>', views.presenca, name='presenca'),
-    # path('/<id>', meu_diario, name='meu_diario'),
+    path('atividades/', views.atividades, name='atividade'),
 ]
