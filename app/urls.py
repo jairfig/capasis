@@ -18,16 +18,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView
+from cadastro.views import autentica
+
+
+import cadastro.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', include('login.urls')),
-    path('atividade/', include('atividade.urls')),
     path('diario/', include('diario.urls')),
-    path('', include('dashboard.urls')),
-    path('pessoa/', include('arquivos.urls')),
-    path('trilha/', include('trilha.urls')),
-    path('modulo/', include('modulo.urls'))
+    path('gestao/', include('gestao.urls')),
+    path('cadastro/', include('cadastro.urls')),
+    path('', autentica, name='autentica'),
 ]
 
 if settings.DEBUG:
